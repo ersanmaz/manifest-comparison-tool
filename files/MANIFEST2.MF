@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MyService bundle 2
+Bundle-SymbolicName: com.sample.myservice2
+Bundle-Version: 1.0.2
+Bundle-Activator: com.sample.myservice.Activator
+Import-Package: org.apache.commons.logging;version="1.0.5",javax.naming;resolution:=optional
+Export-Package: com.sample.myservice.api;version="1.0.2"
+Private-Package: org.apache.commons.lang3.builder,
+Bundle-ClassPath: .,lib/advancedPersistentLookupLib-1.2.jar,lib/commons-lang3-3.11.jar,lib/trove.jar
