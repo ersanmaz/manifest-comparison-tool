@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
+import java.util.stream.Collectors;
 
 @Component
 public class ManifestsComparator {
@@ -28,8 +29,8 @@ public class ManifestsComparator {
                 if (!secondMainAttributes.containsKey(key)) {
                     mainStringBuilder.append(key).append(SEMI_COLON).append(value).append(NEW_LINE);
                 } else {
-                    List<String> firstFileValues = Arrays.stream(((String) value).split(COMMA)).toList();
-                    List<String> secondFileValues = Arrays.stream(((String) secondMainAttributes.get(key)).split(COMMA)).toList();
+                    List<String> firstFileValues = Arrays.stream(((String) value).split(COMMA)).collect(Collectors.toList());
+                    List<String> secondFileValues = Arrays.stream(((String) secondMainAttributes.get(key)).split(COMMA)).collect(Collectors.toList());
 
                     StringBuilder sb = new StringBuilder();
                     firstFileValues.forEach(val -> {
@@ -37,7 +38,7 @@ public class ManifestsComparator {
                             sb.append(val).append(COMMA);
                         }
                     });
-                    if (!sb.isEmpty()) {
+                    if (!"".equals(sb.toString())) {
                         int lastCharIndex = sb.length() - 1;
                         sb.deleteCharAt(lastCharIndex);
                         mainStringBuilder.append(key).append(SEMI_COLON).append(sb).append(NEW_LINE);
